@@ -1,0 +1,2 @@
+--SELECT table_name FROM information_schema.tables WHERE table_schema in ('loja') order by table_name;
+SELECT 'sed -i "s/"loja"."' || table_name || '"/"loja"."' || table_name || '/g" sql/postgresql-create-tables.sql' as table_name FROM information_schema.tables WHERE table_schema in ('loja') order by table_name;

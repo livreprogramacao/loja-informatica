@@ -1,0 +1,17 @@
+DROP TABLE APP.proposta_produto
+DROP TABLE APP.proposta
+DROP TABLE APP.proposta_status
+DROP TABLE APP.produto
+DROP TABLE APP.fornecedor
+DROP TABLE APP.categoria
+DROP TABLE APP.cliente
+DROP TABLE APP.vendedor
+
+DROP SEQUENCE APP.vendedor_seq RESTRICT
+DROP SEQUENCE APP.cliente_seq RESTRICT
+DROP SEQUENCE APP.fornecedor_seq RESTRICT
+DROP SEQUENCE APP.categoria_seq RESTRICT
+DROP SEQUENCE APP.produto_seq RESTRICT
+DROP SEQUENCE APP.proposta_seq RESTRICT
+DROP SEQUENCE APP.proposta_status_seq RESTRICT
+DROP SEQUENCE APP.proposta_produto_seq RESTRICT

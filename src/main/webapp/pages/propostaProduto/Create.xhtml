@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PropostaProdutoCreateDlg" widgetVar="PropostaProdutoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePropostaProdutoTitle}">
+            <h:form id="PropostaProdutoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{propostaProdutoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreatePropostaProdutoLabel_quantidade}" for="quantidade" />
+                        <p:inputText id="quantidade" value="#{propostaProdutoController.selected.quantidade}" title="#{bundle.CreatePropostaProdutoTitle_quantidade}" />
+                        <p:outputLabel value="#{bundle.CreatePropostaProdutoLabel_valor}" for="valor" />
+                        <p:inputText id="valor" value="#{propostaProdutoController.selected.valor}" title="#{bundle.CreatePropostaProdutoTitle_valor}" />
+                        <p:outputLabel value="#{bundle.CreatePropostaProdutoLabel_produtoId}" for="produtoId" />
+                        <p:selectOneMenu id="produtoId" value="#{propostaProdutoController.selected.produtoId}" >
+                            <f:selectItems value="#{produtoController.itemsAvailableSelectOne}"
+                                           var="produtoIdItem"
+                                           itemValue="#{produtoIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePropostaProdutoLabel_propostaId}" for="propostaId" />
+                        <p:selectOneMenu id="propostaId" value="#{propostaProdutoController.selected.propostaId}" >
+                            <f:selectItems value="#{propostaController.itemsAvailableSelectOne}"
+                                           var="propostaIdItem"
+                                           itemValue="#{propostaIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{propostaProdutoController.create}" value="#{bundle.Save}" update="display,:PropostaProdutoListForm:datalist,:growl" oncomplete="handleSubmit(args,'PropostaProdutoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PropostaProdutoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

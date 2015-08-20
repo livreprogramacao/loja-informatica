@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PropostaProdutoViewDlg" widgetVar="PropostaProdutoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPropostaProdutoTitle}">
+            <h:form id="PropostaProdutoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{propostaProdutoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPropostaProdutoLabel_id}"/>
+                        <h:outputText value="#{propostaProdutoController.selected.id}" title="#{bundle.ViewPropostaProdutoTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewPropostaProdutoLabel_quantidade}"/>
+                        <h:outputText value="#{propostaProdutoController.selected.quantidade}" title="#{bundle.ViewPropostaProdutoTitle_quantidade}"/>
+                        <h:outputText value="#{bundle.ViewPropostaProdutoLabel_valor}"/>
+                        <h:outputText value="#{propostaProdutoController.selected.valor}" title="#{bundle.ViewPropostaProdutoTitle_valor}"/>
+                        <h:outputText value="#{bundle.ViewPropostaProdutoLabel_produtoId}"/>
+                        <h:outputText value="#{propostaProdutoController.selected.produtoId}" title="#{bundle.ViewPropostaProdutoTitle_produtoId}"/>
+                        <h:outputText value="#{bundle.ViewPropostaProdutoLabel_propostaId}"/>
+                        <h:outputText value="#{propostaProdutoController.selected.propostaId}" title="#{bundle.ViewPropostaProdutoTitle_propostaId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PropostaProdutoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

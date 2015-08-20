@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PropostaCreateDlg" widgetVar="PropostaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePropostaTitle}">
+            <h:form id="PropostaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{propostaController.selected != null}">
+                        <p:selectOneMenu id="clienteId" value="#{propostaController.selected.clienteId}" >
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="clienteIdItem"
+                                           itemLabel="#{clienteIdItem.nome}"
+                                           itemValue="#{clienteIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePropostaLabel_propostaStatusId}" for="propostaStatusId" />
+                        <p:selectOneMenu id="propostaStatusId" value="#{propostaController.selected.propostaStatusId}" >
+                            <f:selectItems value="#{propostaStatusController.itemsAvailableSelectOne}"
+                                           var="propostaStatusIdItem"
+                                           itemLabel="#{propostaStatusIdItem.status}"
+                                           itemValue="#{propostaStatusIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePropostaLabel_dataCriacao}" for="dataCriacao" />
+                        <p:calendar id="dataCriacao" pattern="MM/dd/yyyy" value="#{propostaController.selected.dataCriacao}" title="#{bundle.EditPropostaTitle_dataCriacao}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreatePropostaLabel_total}" for="total" />
+                        <p:inputText id="total" value="#{propostaController.selected.total}" title="#{bundle.CreatePropostaTitle_total}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{propostaController.create}" value="#{bundle.Save}" update="display,:PropostaListForm:datalist,:growl" oncomplete="handleSubmit(args,'PropostaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PropostaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
